@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TaskForm = () => {
+const TaskForm = (props) => {
     const [text, setText] = useState('');
 
     const updateText = (event) => {
@@ -9,15 +9,9 @@ const TaskForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        const task = {
-            id: Date.now(),
-            text: text,
-            done: false
-        };
-
-        setState([...state, task]);
+        props.onTaskAdded(text);
     }
+    
     return <form onSubmit={handleSubmit}>
         <input
             type="text"
